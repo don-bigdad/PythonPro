@@ -13,8 +13,11 @@ class Product:
 product1=Product("Apple","Iphone12",27.499)
 product2=Product("OnePlus","OnePlus 9 pro",25.999)
 product3=Product("Samsung","Samsung S21",22.999)
-
-print(product1,product2,product3,sep="\n")
+product4=Product("Samsung","safety glass",500)
+product5=Product("Xiaomi","phone case",300)
+product6=Product("Apple","wireless headphones",6000)
+Product7=Product("Apple","wireless charging",3000)
+# print(product1,product2,product3,sep="\n")
 # Создайте класс «Покупатель». В качестве полей можете
 # использовать фамилию, имя, отчество, мобильный телефон и т. д
 class Buyer:
@@ -28,33 +31,31 @@ class Buyer:
 buyer1=Buyer("Ivan","Ivanov","somemail1.@gmail.com")
 buyer2=Buyer("Petr","Petrov","somemail2.@gmail.com")
 
-print(buyer1,buyer2,sep="\n")
+# print(buyer1,buyer2,sep="\n")
 # Создайте класс «Заказ». Заказ может содержать несколько
 # товаров. Заказ должен содержать данные о пользователе, который
 # его осуществил. Реализуйте метод вычисления суммарной
 # стоимости заказа. Определите метод __str__() для корректного
 # вывода информации о этом заказе
 class Order:
-    def __init__(self,name,surname,mail):
-        self.name=name
-        self.surname=surname
-        self.mail=mail
-
-    def fullprice(self,product1,product2):
-        summ = {}
-        suma=0
-        product1[1] = int(product1[1])
-        product2[1] = int(product2[1])
-        summ["price1"] = product1[1]
-        summ["price2"] = product2[1]
-        for element in summ:
-            suma += summ[element]
-        return suma
+    def __init__(self, buyer: Buyer):
+        self.buyer = buyer
+        self.product= []
+        self.count = []
+    def add_product(self, product:Product, count:int):
+        self.product.append(product)
+        self.count.append(count)
+        return product
+    def summ(self):
+        summ=0
+        for i in range (len(self.product)):
+            summ+=self.product[i].price*self.count[i]
+        return summ
     def __str__(self):
-        return f'Заказчик:{self.name} {self.surname} {self.mail}\n' \
-               f'заказ:{product1[0]} {product2[0]} на сумму {self.fullprice(product1,product2)}\n'
+       return  f' Buyer {self.buyer},total summ {self.summ()}'
 
-persona1=Order("ivan","ivanov","someivan.@gmailcom")
-product1="cheese,70".split(",")
-product2="pizza,250".split(",")
-print(persona1)
+order_1=Order(buyer1)
+print(order_1)
+order_1.add_product(product2,2)
+print(order_1)
+
