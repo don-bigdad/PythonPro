@@ -50,9 +50,9 @@ class Group:
             if student.surname ==surname:
                 print("Student in list")
             else:
-                print("Not found")
+                print("Not found") 
     def __str__(self):
-       return f'{self.list}  '
+       return f'{self.list}  '  #Не могу отобразить строку,работаю с object
 group1=Group()
 group1.add_student(student3)
 group1.add_student(student2)
