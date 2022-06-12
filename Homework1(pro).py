@@ -1,61 +1,41 @@
-# Создайте пользовательский класс для описания товара
-# (предположим, это задел для интернет-магазина). В качестве
-# полей товара можете использовать значение цены, описание,
-# габариты товара. Создайте пару экземпляров вашего класса и
-# протестируйте их работу.
+
 class Product:
-    def __init__(self,manufacturer,model,price):
-        self.manufacturer=manufacturer
-        self.model=model
+    def __init__(self,price,name) -> None:
         self.price=price
-    def __str__(self):
-        return f'{self.manufacturer} {self.model} {self.price}'
-product1=Product("Apple","Iphone12",27.499)
-product2=Product("OnePlus","OnePlus 9 pro",25.999)
-product3=Product("Samsung","Samsung S21",22.999)
-product4=Product("Samsung","safety glass",500)
-product5=Product("Xiaomi","phone case",300)
-product6=Product("Apple","wireless headphones",6000)
-Product7=Product("Apple","wireless charging",3000)
-# print(product1,product2,product3,sep="\n")
-# Создайте класс «Покупатель». В качестве полей можете
-# использовать фамилию, имя, отчество, мобильный телефон и т. д
-class Buyer:
-    def __init__(self,name,surname,mail):
+        self.name=name
+    def __str__(self) -> None:
+        return f'{self.name},{self.price}'
+class Person:
+    def __init__(self,name,surname,number) -> None:
         self.name=name
         self.surname=surname
-        self.mail=mail
-
-    def __str__(self):
-        return f'{self.name} {self.surname} {self.mail}'
-buyer1=Buyer("Ivan","Ivanov","somemail1.@gmail.com")
-buyer2=Buyer("Petr","Petrov","somemail2.@gmail.com")
-
-# print(buyer1,buyer2,sep="\n")
-# Создайте класс «Заказ». Заказ может содержать несколько
-# товаров. Заказ должен содержать данные о пользователе, который
-# его осуществил. Реализуйте метод вычисления суммарной
-# стоимости заказа. Определите метод __str__() для корректного
-# вывода информации о этом заказе
+        self.number=number
+    def __str__(self) -> str:
+        return f'{self.name} {self.surname} {self.number}'
+person1=Person("Ivan","Ivanov","123456789")
+person2=Person("Ivan","Ivanov","123456789")
+product1=Product(20,"Apple")
+product2=Product(30,"banana")
+product3=Product(35,"cherry")
+product_list=[(product1.name,product1.price),(product2.name,product2.price),(product3.name,product3.price)]
+quantyties={}
 class Order:
-    def __init__(self, buyer: Buyer):
-        self.buyer = buyer
-        self.product= []
-        self.count = []
-    def add_product(self, product:Product, count:int):
-        self.product.append(product)
-        self.count.append(count)
-        return product
-    def summ(self):
-        summ=0
-        for i in range (len(self.product)):
-            summ+=self.product[i].price*self.count[i]
-        return summ
+    def __init__(self,person:Person,product:Product):
+        self.person=person
+        self.product=product
+    def append(self,product_name,count):
+        quantyties[product_name]=count
+        return quantyties
+    def to_pay(self):
+        sum=0
+        for element in quantyties:
+            for item in product_list:
+                if item[0]==element:
+                    sum+=quantyties[element]*item[1]
+        return sum
     def __str__(self):
-       return  f' Buyer {self.buyer},total summ {self.summ()}'
-
-order_1=Order(buyer1)
-print(order_1)
-order_1.add_product(product2,2)
-print(order_1)
-
+        return f'Person {self.person} has order {" and ".join([elem for elem in quantyties])}.Total price:{self.to_pay()}'
+order1=Order(person1,product1)
+order1.append("cherry",3)
+order1.append("Apple",5)
+print(order1)

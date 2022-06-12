@@ -1,13 +1,13 @@
 
 class Human:
-    def __init__(self, surname, name, patronymic, age):
-        self.surname = surname
+    def __init__(self, name, surname, patronymic, age):
         self.name = name
+        self.surname = surname
         self.patronymic = patronymic
         self.age = age
 
     def __str__(self):
-        return f'{self.surname} {self.name[0]}.{self.patronymic[0]}. {self.age}'
+        return f'{self.name} {self.surname[0]}.{self.patronymic[0]}. {self.age}'
 
 
 student_1 = Human("Ivanov", "Ivan", "Ivanich", 18)
@@ -20,7 +20,7 @@ class Student(Human):
         self.mail = mail
 
     def __str__(self):
-        return f'ФИО :{self.surname} {self.name} {self.patronymic[0]}. Mail: ' \
+        return f'ФИО :{self.name} {self.surname} {self.patronymic[0]}. Mail: ' \
                f'{self.mail},age {self.age}'
 
 
@@ -31,32 +31,35 @@ student4 = Student("Bogdanov", "Ivan", "Ivanich", "somemail1@gmail.com",18)
 student5 = Student("Danilov", "Ivan", "Ivanich", "somemail1@gmail.com",18)
 student6 = Student("Rodionov", "Ivan", "Ivanich", "somemail1@gmail.com",18)
 print(student1)
+class Group():
+    student_list = []
 
-class Group:
-    def __init__(self):
-        self.list = []
     def add_student(self, student):
-        if len(self.list)<5:
-            self.list.append(student)
+        if len(self.student_list)<5:
+            self.student_list.append(student.name)
         else:
-            print("the group is full")
+            print( 'the group is full')
     def del_student(self, student):
-        if len(self.list)>=1:
-            self.list.remove(student)
+        if len(self.student_list)>2:
+            self.student_list.remove(student)
         else:
             print("Group must have at least one student")
     def search_student(self, surname):
-        for student in self.list:
-            if student.surname ==surname:
+        for element in self.student_list:
+            if element in self.student_list:
                 print("Student in list")
+                break
             else:
-                print("Not found") 
+                print("Not found")
+                break
     def __str__(self):
-       return f'{self.list}  '  #Не могу отобразить строку,работаю с object
+       return f'{self.student_list} '
 group1=Group()
 group1.add_student(student3)
 group1.add_student(student2)
+group1.add_student(student5)
+group1.add_student(student4)
+group1.add_student(student2)
+group1.add_student(student1)
+group1.search_student(student2.surname)
 print(group1)
-group1.del_student(student2)
-print(group1)
-group1.search_student("some")
