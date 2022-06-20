@@ -23,7 +23,6 @@ class Order:
     
     def __init__(self,person:Person):
         self.person=person
-        self.product=[]
         self.quantyties={}
     def append(self,product_name,count):
         self.quantyties[product_name]=count
