@@ -31,7 +31,10 @@ class Order:
         self.quantyties = {}
 
     def append(self, product: Product, count):
-        self.quantyties[product.name] = product.price * count
+        if product.name in self.quantyties:
+            self.quantyties[product.name] = self.quantyties[product.name] + count * product.price
+        else:
+            self.quantyties[product.name] = count * product.price
         return self.quantyties
 
     def to_pay(self):
@@ -46,6 +49,6 @@ class Order:
 
 order1 = Order(person1)
 order1.append(product1, 5)
+order1.append(product1, 2)
 order1.append(product2, 3)
 print(order1)
-
