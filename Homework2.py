@@ -30,20 +30,20 @@ class Group:
     group=[]
     def add_student(self,student:Student):
         if len(self.group)<10:
-            self.group.append(student.surname+" "+student.name)
+            self.group.append(student)
         else:
-            return "Group is full"
+            return None
     def remove_student(self,student:Student):
-        for element in self.group:
-            if element.split()[0]==student.surname:
-                self.group.remove(element)
-    def search_by_surname(self,student:Student):
-        for elem in self.group:
-            if elem.split()[0]==student.surname:
-                print(elem + " in group")
+        self.group.remove(student)
+    def search_by_surname(self,surname):
+        for student in self.group:
+            if student.surname==surname:
+                return student
 
-    def __str__(self):
-        return f'{self.group}' # Чтобы без принта работало,но не знаю какой аргумент передавать в скобки {self.search_by_surname(????)}
+    def __str__(self): 
+        n="\n"
+        return f'{n.join(map(str,self.group))}'
+
 gr_1=Group()
 gr_1.add_student(student1)
 gr_1.add_student(student2)
@@ -56,7 +56,5 @@ gr_1.add_student(student8)
 gr_1.add_student(student9)
 gr_1.add_student(student10)
 gr_1.add_student(student11)
-gr_1.remove_student(student1)
-gr_1.remove_student(student2)
-gr_1.search_by_surname(student4)
-print(gr_1)
+gr_1.remove_student(student3)
+print(gr_1.search_by_surname("Ivanov4"))
