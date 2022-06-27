@@ -57,7 +57,14 @@ class Order:
 
 pers1 = Person("Ivanov", "Ivan", "12345689")
 prod1 = Product("Cherry", 15)
-prod4=Product("Green Apple", 15)
+
+
+prod4=Product("Green Apple", input("input price:"))
+try:
+    int(prod4.price)
+except ValueError:
+    print("Price must be in or float")
+
 prod5=Product("Orange",27)
 prod2 = Product("Apple", -25)
 prod3 = Product("Banana", 27)
