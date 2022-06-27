@@ -42,7 +42,7 @@ class Pizza:
 # ord1.ingredient_on_pizza(prod5)
 # ord1.check()
 # print(ord1)
-#########
+######### text redactor
 text="Lorem ipsum dolor sit amet consectetur adipisicing elit. \n" \
        "Officia, aperiam ipsa quo non. Tempore facere deleniti cupiditate quis aliquid quasi aut maiores laudantium!\n" \
        "Consequuntur cupiditate ea animi, quia praesentium voluptatem?"
@@ -64,7 +64,7 @@ class Redactor:
 
     def characters_count(self):
         with open("C:/Users\Admin/PythonStart/text.txt", "r") as file:
-            return len(file.read())
+            return len(file.read().replace(" ",""))
     def symbols_count(self):
         count=0
         with open("C:/Users\Admin/PythonStart/text.txt", "r") as file:
@@ -80,3 +80,36 @@ print(test.symbols_count())
 print(test.words_count())
 print(test.characters_count())
 print(test.sentence_count())
+#### ticket Доделать
+class Ticket:
+    list_of_ticket=[0]
+    ivent = datetime.date(2022, 9, 30)
+    price=1500
+    total = 0
+    def to_pay(self,variables):
+        if variables == "+" or variables.title() == "Yes":
+            self.total = self.price*0.5
+        elif self.ivent.day-datetime.date.today().day<10 and self.ivent.month-datetime.date.today().month==0:
+            self.total = self.total+(self.total*0.1)
+        elif self.ivent.month-datetime.date.today().month>2:
+            self.total = self.price*0.6
+        else:
+            self.total = self.price
+        self.list_of_ticket.append(self.total)
+        return self.total
+
+    def whats_price(self,ticket_number):
+        return f'Ticket with number {ticket_number} have price {self.list_of_ticket[ticket_number]} UAH'
+
+    def print_my_ticket(self,ticket_number):
+        return f'Ticket number {ticket_number} : {self.list_of_ticket[ticket_number]} UAH'
+
+
+tick1 = Ticket()
+tick2=Ticket()
+print(tick1.to_pay("yes"))
+print(tick1.to_pay("-"))
+
+print(tick1.whats_price(2))
+print(tick1.print_my_ticket(1))
+
