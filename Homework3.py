@@ -1,22 +1,6 @@
-class MyException(Exception):
-    def __init__(self,count):
-        self.count=count
-    def error(self):
-         return  "Must take int or float,but find string" if type(self.count)==str else "Check the variables,price or count less than zero"
-
+class Zerro(Exception):
     def __str__(self):
-        return self.error()
-
-
-class Person:
-    def __init__(self, surname: str, name, phone):
-        self.surname = surname
-        self.name = name
-        self.phone = phone
-
-    def __str__(self):
-        return f'{self.surname} {self.name}.Phone {self.phone}'
-
+        return f'Price can`t be less then 0,Change value of price'
 
 class Product:
     def __init__(self, name, price):
@@ -26,59 +10,14 @@ class Product:
     def __str__(self):
         return f'{self.name} {self.price}'
 
-
-class Order:
-    def __init__(self, person: Person):
-        self.person = person
-        self.order = {}
-    def product_with_price(self,price:int|float):
-        try:
-            price=int(price)
-        except ValueError:
-            return "Value of price must be integer of float"
-        prod_with_price=[elem.name for elem in dict_prod if elem.price==price]
-        return f'All product with price {price}.\n{",".join([elem for elem in prod_with_price])}'\
-            if prod_with_price else -1
-    def append_prod(self, product, count: int | float):
-        if not type(count) == int or count <= 0 or product.price <= 0:
-            raise MyException(count)
-        if product.name in self.order:
-            self.order[product.name] = self.order[product.name] + product.price * count
-        else:
-            self.order[product.name] = product.price * count
-
-    def sum(self):
-        total=sum({self.order[elem] for elem in self.order})
-        return total
-
-    def __str__(self):
-        return f'{self.person} \nOrdered {" and ".join(elem for elem in self.order)}.\nTotal to pay {self.sum()}'
-
-
-pers1 = Person("Ivanov", "Ivan", "12345689")
-prod1 = Product("Cherry", 15)
-
-
-prod4=Product("Green Apple", input("input price:"))
 try:
-    int(prod4.price)
+    product1 = Product("Apple",int(input("Input price:")))
 except ValueError:
-    print("Price must be in or float")
+    print("Value must be int or float")
+if product1.price<0:
+    raise Zerro
 
-prod5=Product("Orange",27)
-prod2 = Product("Apple", -25)
-prod3 = Product("Banana", 27)
-ord1 = Order(pers1)
 
-try:
-    ord1.append_prod(prod2,"asd")
-except MyException:
-    if prod2.price < 0:
-        prod2.price=abs(prod2.price)
-    ord1.append_prod(prod2, 1)
-print(ord1)
-dict_prod={prod1,prod2,prod3,prod4}
-print(ord1.product_with_price(input("Input number of price=")))
 #####################################################
 
 class GroupException(Exception):
@@ -123,7 +62,7 @@ class Group():
 
 
 gr1 = Group()
-gr1.append_student(some[0])
+print(gr1.append_student(some[0]))
 gr1.append_student(some[1])
 gr1.append_student(some[2])
 gr1.append_student(some[3])
