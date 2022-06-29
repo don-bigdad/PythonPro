@@ -5,17 +5,20 @@ class Zerro(Exception):
 class Product:
     def __init__(self, name, price):
         self.name = name
+        if not isinstance(price,(int|float)):
+            raise ValueError
+        if price <= 0:
+            raise Zerro
+
         self.price = price
 
     def __str__(self):
         return f'{self.name} {self.price}'
 
-try:
-    product1 = Product("Apple",int(input("Input price:")))
-except ValueError:
-    print("Value must be int or float")
-if product1.price<0:
-    raise Zerro
+
+product1 = Product("Apple",12.5)
+print(product1)
+
 
 
 #####################################################
@@ -40,11 +43,11 @@ class Student(Person):
         return f'{self.surname} {self.name[0]} {self.mail}'
 
 some=[Student(f'Ivanov{i}',f'Ivan',f'somemail{i}@gmail.com').__str__() for i in range(1,15)]
-
+STUDENT_COUNT = 10
 class Group():
     student_list=[]
     def append_student(self,student):
-        if len(self.student_list)>10:
+        if len(self.student_list) == STUDENT_COUNT:
             raise GroupException
         self.student_list.append(student)
         return f'Student appended,your list now,{self.student_list}'
@@ -71,7 +74,6 @@ gr1.append_student(some[5])
 gr1.append_student(some[6])
 gr1.append_student(some[7])
 gr1.append_student(some[8])
-gr1.append_student(some[9])
 gr1.append_student(some[9])
 try:
     gr1.append_student(some[10])
