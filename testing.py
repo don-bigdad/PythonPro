@@ -46,7 +46,7 @@ class Pizza:
 text="Lorem ipsum dolor sit amet consectetur adipisicing elit. \n" \
        "Officia, aperiam ipsa quo non. Tempore facere deleniti cupiditate quis aliquid quasi aut maiores laudantium!\n" \
        "Consequuntur cupiditate ea animi, quia praesentium voluptatem?"
-with open("C:/Users\Admin/PythonStart/text.txt","w") as f:
+with open("text.txt","w") as f:
     f.write(text)
 
 class Redactor:
@@ -55,19 +55,19 @@ class Redactor:
         self.file=file
 
     def words_count(self):
-        with open("C:/Users\Admin/PythonStart/text.txt", "r") as file:
+        with open("text.txt", "r") as file:
             return len(file.read().split())
 
     def sentence_count(self):
-        with open("C:/Users\Admin/PythonStart/text.txt", "r") as file:
+        with open("text.txt", "r") as file:
             return file.read().count(".")
 
     def characters_count(self):
-        with open("C:/Users\Admin/PythonStart/text.txt", "r") as file:
+        with open("text.txt", "r") as file:
             return len(file.read().replace(" ",""))
     def symbols_count(self):
         count=0
-        with open("C:/Users\Admin/PythonStart/text.txt", "r") as file:
+        with open("text.txt", "r") as file:
             symbols=[",","!","@",";",".","№","#","^","&","*"]
             for elem in file.read():
                 if elem in symbols:
