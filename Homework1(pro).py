@@ -1,19 +1,19 @@
 class Product:
-    def __init__(self, price, name) -> None:
+    def __init__(self, price, name):
         self.price = price
         self.name = name
 
-    def __str__(self) -> None:
+    def __str__(self):
         return f'{self.name},{self.price}'
 
 
 class Person:
-    def __init__(self, name, surname, number) -> None:
+    def __init__(self, name, surname, number):
         self.name = name
         self.surname = surname
         self.number = number
 
-    def __str__(self) -> str:
+    def __str__(self):
         return f'{self.name} {self.surname} {self.number}'
 
 
