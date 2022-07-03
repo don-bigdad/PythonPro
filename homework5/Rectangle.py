@@ -16,17 +16,18 @@ class Rectangle:
         if isinstance(other,(int or float)):
             return self.square()*other
         raise ValueError
-
+    def __add__(self, other):
+        return Rectangle(self.width+other.width,self.height+other.height)
     def __iadd__(self, other):
-        return self.square()+other.square()
+        return Rectangle(self.width + other.width, self.height + other.height)
 
     def __str__(self):
         return f'Your rectangle have height {self.height},width {self.width} and square of this rectanlge {self.square()}'
 
 
-rect1=Rectangle(12,1.5)
-rect2=Rectangle(12,2.5)
+rect1=Rectangle(12,8)
+rect2=Rectangle(12,4)
 new_rect1=rect1*3
-rect3=Rectangle(2,4)
-rect3+=rect2
+rect3=Rectangle(12,6)
+rect3+=rect2+rect1
 print(rect1>rect2,new_rect1,rect3)
