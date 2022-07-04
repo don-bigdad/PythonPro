@@ -59,11 +59,13 @@ class Order:
             return self
 
     def __isub__(self, other):
-        try:
+        if self.quantyties[other.name]<=0:
+            raise Zerro
+        if other.name in self.quantyties:
             self.quantyties[other.name] = self.quantyties[other.name] - other.price
             return self
-        except KeyError:
-            return f'Can`t found this product'
+        raise KeyError
+
 
     def to_pay(self):
         sum = 0
@@ -79,5 +81,10 @@ order2 = Order(person2)
 order1.append(product2, 3)
 order1 += product3
 order2 += product1 * 2
-order1 -= product2
+order2-=product1
+order2-=product1
+order2-=product1
+
+
+
 print(order1, order2, sep="\n")
