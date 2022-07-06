@@ -65,19 +65,20 @@ class Group():
     def __iter__(self):
         return GroupIteration(self.student_list)
 
+
 class GroupIteration:
 
-    def __init__(self,group_list):
-        self.group_list=group_list
-        self.index=0
+    def __init__(self, group_list):
+        self.group_list = group_list
+        self.index = 0
 
     def __iter__(self):
         return self
 
     def __next__(self):
         if self.index < len(self.group_list):
-            self.index+=1
-            return self.group_list[self.index-1]
+            self.index += 1
+            return self.group_list[self.index - 1]
 
         raise StopIteration
 
@@ -211,4 +212,3 @@ print(order2[0])
 
 for elem in order1:
     print(elem)
-
