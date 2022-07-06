@@ -102,7 +102,7 @@ class Zerro(Exception):
 
 class Product:
     def __init__(self, price, name):
-        if not isinstance(price, int | float):
+        if not isinstance(price, int | float) and not isinstance(name,str):
             raise ValueError
         if price <= 0:
             raise Zerro
@@ -110,7 +110,7 @@ class Product:
         self.name = name
 
     def __mul__(self, other):
-        if isinstance(other, int):
+        if isinstance(other, int | float):
             return Product(self.price * other, self.name)
 
     def __str__(self):
