@@ -83,17 +83,17 @@ class GroupIteration:
         raise StopIteration
 
 
-# gr1 = Group()
-#
-# gr1.append_student(some[1])
-# gr1 += some[2]
-# gr1 += some[3]
-# gr1 += some[4]
-# gr1 += some[5]
-# gr1 -= some[1]
-#
-# for elem in gr1:
-#     print(elem)
+gr1 = Group()
+
+gr1.append_student(some[1])
+gr1 += some[2]
+gr1 += some[3]
+gr1 += some[4]
+gr1 += some[5]
+gr1 -= some[1]
+
+for elem in gr1:
+    print(elem)
 ##################################
 class Zerro(Exception):
     def __str__(self):
