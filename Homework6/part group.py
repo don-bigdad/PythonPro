@@ -96,3 +96,4 @@ gr1 -= some[1]
 
 for elem in gr1:
     print(elem)
+

@@ -78,7 +78,7 @@ class Order:
         return len(self.quantyties)
 
     def __getitem__(self, index):
-        converted_list=list(self.quantyties.items())
+        converted_list = list(self.quantyties.items())
         if index < len(converted_list):
             return converted_list[index]
         raise IndexError
@@ -89,18 +89,17 @@ class Order:
 
 class OrderIter:
 
-    def __init__(self,product_dict):
-        self.converted_list=list(product_dict.items())
-        self.index=0
+    def __init__(self, product_dict):
+        self.converted_list = list(product_dict.items())
+        self.index = 0
 
     def __iter__(self):
         return self
 
     def __next__(self):
-
         if self.index < len(self.converted_list):
-            self.index+=1
-            return self.converted_list[self.index-1]
+            self.index += 1
+            return self.converted_list[self.index - 1]
         raise StopIteration
 
 
@@ -110,7 +109,7 @@ order1.append(product2, 3)
 order1 += product3
 order2 += product1 * 2
 order1 -= product2
-order1+=product1
+order1 += product1
 print(order1, order2, sep="\n")
 print(order2[0])
 
