@@ -94,7 +94,9 @@ gr1 -= some[1]
 
 for elem in gr1:
     print(elem)
+
 ##################################
+
 class Zerro(Exception):
     def __str__(self):
         return f'Check the value of price,probably uncorrect value'
