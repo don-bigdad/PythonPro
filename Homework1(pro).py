@@ -6,7 +6,6 @@ class Product:
     def __str__(self):
         return f'{self.name},{self.price}'
 
-
 class Person:
     def __init__(self, name, surname, number):
         self.name = name
