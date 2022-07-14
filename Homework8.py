@@ -50,4 +50,18 @@ def square(start,limit):
 #     print(elem)
 
 #2
+def fib(n):
+    memory=[0,1]
+    def calculate():
+        last_number=memory[-1]
+        pre_last=memory[-2]
+        if n<len(memory):
+            return memory[n]
+        while len(memory)!=n+1:
+            last_number,pre_last=pre_last+last_number,last_number
+            memory.append(last_number)
+        return memory[n]
+    return calculate
 
+for elem in range(10):
+    print(fib(elem)())
