@@ -3,17 +3,26 @@ import random
 seq=[random.randint(0,10) for elem in range(3)]
 
 #3
-def sum_my_list(seq,rule):
+def generate(rule):
+    seq=[random.randint(0,10) for elem in range(3)]
     return rule(seq)
 
-def rule(seq):
+def add_2(seq):
+    return func_sum([elem+2 for elem in seq])
+
+def pow_item():
+    items = [elem**2 for elem in seq]
+    return func_sum(items)
+
+def func_sum(seq):
     res_list=[]
     for elem in seq:
         for item in seq:
             res_list.append(elem+item)
     return res_list
 
-# print(sum_my_list(seq,rule))
+
+print(sum_my_list(add_2))
 
 
 #1
@@ -39,9 +48,10 @@ def square(start,limit):
         limit -= 1
         start = start**(1/2)
         yield start
-
-# for elem in gen(2,10,sequance_mul):
-#     print(elem)
+# item=gen(2,10,sequance_mul)
+# print(next(item))
+# print(next(item))
+# print(next(item))
 #
 # for elem in gen(20,5,increment):
 #     print(elem)
@@ -50,9 +60,11 @@ def square(start,limit):
 #     print(elem)
 
 #2
-def fib(n):
+import timeit
+
+def fib():
     memory=[0,1]
-    def calculate():
+    def calculate(n):
         last_number=memory[-1]
         pre_last=memory[-2]
         if n<len(memory):
@@ -63,5 +75,7 @@ def fib(n):
         return memory[n]
     return calculate
 
-for elem in range(10):
-    print(fib(elem)())
+x=fib()
+print(x(10))
+
+print(timeit.timeit("x(30)",number=5,setup="from __main__ import x"))
