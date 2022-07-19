@@ -2,7 +2,7 @@ import datetime
 import time
 #1
 def decorator(func):
-    def another_func():
+    def another_func(*args,**kwargs):
         with open("decorator_count.txt","a") as file:
             file.write(f'Decorated function worked in:{datetime.datetime.now()}\n')
         with open("decorator_count.txt", "r") as file:
@@ -13,7 +13,7 @@ def decorator(func):
 def some():
     return 1
 
-# print(some())
+print(some())
 
 #2
 list_of_func=[]
@@ -54,24 +54,25 @@ class Say_hello_2:
 
 #4
 def parameters(count,filename):
-    start = time.time()
-    while count!=0:
-        def hard_decorator(func):
-            def dec():
-                return func
-            return dec
-        count -= 1
-    end=time.time()
-    with open(f'{filename}.txt', "a") as f:
-        f.write(f'function start at {start} \n')
-        f.write(f'function stop at {end}\n')
-        f.write(f'Total time for all tests:{end-start} sec \n')
+    def hard_decorator(func):
+        def dec(*args,**kwargs):
+            start = time.time()
+            while count != 0:
+                x=func(*args)
+                count -= 1
+            end = time.time()
+            with open(f'{filename}.txt', "a") as f:
+                f.write(f'function start at {start} \n')
+                f.write(f'function stop at {end}\n')
+                f.write(f'Total time for all tests:{end - start} sec \n')
+            return func
+        return dec
     return hard_decorator
 
-@parameters(10000000,"test")
-def recur_fibo(n=10000):
-   if n <= 1:
-       return n
-   else:
-       return(recur_fibo(n-1) + recur_fibo(n-2))
+@parameters(1000,"test")
+def mul(a,b):
+    return a*b
+
+print(mul(10,20))
+
 
