@@ -57,6 +57,7 @@ def parameters(count,filename):
     def hard_decorator(func):
         def dec(*args,**kwargs):
             start = time.time()
+            nonlocal count
             while count != 0:
                 x=func(*args)
                 count -= 1
@@ -69,10 +70,10 @@ def parameters(count,filename):
         return dec
     return hard_decorator
 
-@parameters(1000,"test")
+@parameters(1000000,"test")
 def mul(a,b):
     return a*b
 
-print(mul(10,20))
+print(mul(20,3))
 
 
