@@ -5,22 +5,19 @@ class Abstract(ABC):
 
     @abstractmethod
     def simple_number(self, number):
-        for i in range(2, number):
-            if number % i == 0:
-                return False
-        return True
+        pass
 
 
 class SimpleNumber(Abstract):
-    @staticmethod
-    def simple_number(number):
+
+    def simple_number(self,number):
         for i in range(2, number):
             if number % i == 0:
                 return False
         return True
 
-
-print(SimpleNumber.simple_number(13))
+x=SimpleNumber()
+print(x.simple_number(13))
 
 
 ###
