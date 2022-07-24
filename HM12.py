@@ -1,5 +1,5 @@
 class Meta(type):
-    def __new__(cls, *args,):
+    def __new__(cls, *args):
         fields=[]
         for elem in args[2:]:
             for item in elem:
