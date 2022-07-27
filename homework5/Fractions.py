@@ -4,7 +4,7 @@ import math
 class Fraction:
 
     def __init__(self,numerator,denominator):
-        if not all((numerator,denominator))>0:
+        if numerator==0 or denominator==0:
             raise ZeroDivisionError
         if  type(numerator)!=int or type(denominator)!=int:
             raise ValueError
