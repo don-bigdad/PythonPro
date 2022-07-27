@@ -29,7 +29,8 @@ STUDENT_COUNT = 10
 
 
 class Group():
-    student_list = []
+    def __init__(self):
+        self.student_list = []
 
     def append_student(self, student):
         if len(self.student_list) == STUDENT_COUNT:
